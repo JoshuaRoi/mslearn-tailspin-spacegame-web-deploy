@@ -75,7 +75,7 @@ stages:
       artifact: drop
 
 - stage: 'Dev'
-  displayName: 'Deploy the web application'
+  displayName: 'Deploy to the dev environment'
   dependsOn: Build
   condition: |
     and
@@ -102,8 +102,8 @@ stages:
               azureSubscription: 'Resource Manager - Tailspin - Space Game'
               appName: '$(WebAppNameDev)'
               package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
-              
-  - stage: 'Test'
+
+- stage: 'Test'
   displayName: 'Deploy to the test environment'
   dependsOn: Dev
   #condition: eq(variables['Build.Reason'], 'Schedule')
